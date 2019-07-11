@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #wrap{
+            width: 500px;
+            height: 500px;
+            border: solid 1px black;
+            margin: auto;
+            position: relative;
+        }
+        #wrap div{
+            width: 500px;
+            height: 500px;
+            position: absolute;
+        }
+        #wrap div:nth-child(1){
+            background-image: url("img/timg.jpg");
+        }
+        #wrap div:nth-child(2){
+            display: none;
+            background-image: url("img/timg (1).jpg");
+        }
+        #wrap div:nth-child(3){
+            display: none;
+            background-image: url("img/timg (2).png");
+        }
+        #wrap ul{
+            list-style:none;
+            position: absolute;
+            bottom: 4px;
+            right: 98px;
+        }
+        #wrap ul li{
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+            float:left;
+            margin-right:5px ;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div></div>
+    <div></div>
+    <div></div>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script>
+    $(function () {
+        // $("#wrap ul li").mouseenter(function () {
+        //     var inder = $(this).index();
+        //     $("#wrap ul li").eq(inder).css({width:"25px",height:"25px",backgroundColor:"white"})
+        //     $("#wrap div").eq(inder).fadeIn("slow").siblings("div").fadeOut("slow")
+        // })
+        // $("#wrap ul li").mouseleave(function () {
+        //     var inder = $(this).index();
+        //     $("#wrap ul li").eq(inder).css({width:"20px",height:"20px",backgroundColor:"red"})
+        // })
+
+    //hover(函数1,函数2)  鼠标悬停方法  方法触发mouseenter和mouseleave两个事件  如果只有一个函数 则mouseenter和mouseleave都执行
+        //stop() 停止现在正在运行的动画
+        $("#wrap ul li").hover(
+            function () {
+            var inder = $(this).index();
+            $("#wrap ul li").eq(inder).css({width:"25px",height:"25px",backgroundColor:"white"})
+            $("#wrap div").stop().eq(inder).fadeIn("slow").siblings("div").fadeOut("slow")
+        },
+            function () {
+                var inder = $(this).index();
+                $("#wrap ul li").eq(inder).css({width:"20px",height:"20px",backgroundColor:"red"})
+            }
+        )
+    })
+</script>
+</body>
+</html>
